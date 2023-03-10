@@ -1,0 +1,228 @@
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+<style>
+  {% for block in section.blocks %}
+  .product__accordion.faq-content-{{ block.id }} {
+    background: {{ block.settings.bgblock }};
+    padding-left: 5px;
+  }
+  .product__accordion.faq-content-{{ block.id }} * {
+    color: {{ block.settings.textblock }};
+  }
+  .faq-text-{{ block.id }} .faq-text{
+    padding-top : {{ block.settings.padding-top }}px;
+    padding-bottom : {{ block.settings.padding-bottom }}px;
+  }
+  .faq-text-{{ block.id }}{
+     background: {{ block.settings.bgblocktext }};
+    padding: 15px 0 10px 5px;
+  }
+  .faq-text-{{ block.id }} *{
+     color: {{ block.settings.textblocktext }};
+  }
+  {% endfor %}
+</style>
+<div class="page-width  section-{{ section.id }}-padding">
+  <div class="grid faq">
+   {% if section.settings.showsidebar %}
+    <div class="grid__item_faq medium-up--one-fifth faq__text">
+      {%- for block in section.blocks -%}
+      {% if block.type == 'text'%}
+      <div data-linked-id ="#{{ block.settings.title | handleize }}" class="text--faq h4">{{ block.settings.title }}</div>
+      {% endif %}
+      {% endfor %}
+    </div> 
+    {% endif %}
+    <div class="grid__item_faq medium-up--four-fifths {% unless section.settings.showsidebar %} fullspace {% endunless %}">
+      <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>
+      {%- if section.blocks.size > 0 -%}
+      <div class="rte faq-wrapper">
+        {%- for block in section.blocks -%}
+        {% case block.type %}
+        {% when 'text'%}
+        {%- if block.settings.title != blank or block.settings.content -%}
+        <div class="faq-text faq-text-{{ block.id }}" id ="{{ block.settings.title | handleize }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.title != blank %}
+          <h2 class="text_title">{{ block.settings.title }}</h2>
+          {% endif %}
+          {%- if block.settings.content != blank  %}         
+          <div class="text-content">{{ block.settings.content }}</div>
+          {% endif %}
+        </div>
+        {%- endif -%}
+        {% when 'faq'%}
+        {%- if block.settings.title != blank -%}
+        <div class="product__accordion accordion  faq-content-{{ block.id }}">
+          <details>
+            <summary>
+              <div class="summary__title">
+                <h2 class="h4 accordion__title">
+                  {{ block.settings.title }}
+                </h2>
+              </div>
+              {% render 'icon-caret' %}
+            </summary>
+            <div class="accordion__content rte">
+              {{ block.settings.content }}
+            </div>
+          </details>
+        </div>
+
+
+        {%- endif -%}
+        {% endcase %}
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "FAQ",
+"settings": [
+
+{
+"id": "showsidebar",
+"type": "checkbox",
+"label": "Show sidebar"
+},
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+
+],
+"blocks": [
+{
+"type": "faq",
+"name": "FAQ block",
+"settings": [
+{
+"id": "title",
+"type": "text",
+"label": "Title"
+},
+{
+"id": "content",
+"type": "richtext",
+"label": "Content"
+},
+{
+"id": "bgblock",
+"type": "color",
+"label": "Background"
+},
+{
+"id": "textblock",
+"type": "color",
+"label": "Text"
+}
+]
+},
+{
+"type": "text",
+"name": "Text block",
+"settings": [
+{
+"id": "title",
+"type": "text",
+"label": "Title"
+},
+{
+"id": "content",
+"type": "textarea",
+"label": "Textarea"
+},
+{
+"id": "bgblocktext",
+"type": "color",
+"label": "Background"
+},
+{
+"id": "textblocktext",
+"type": "color",
+"label": "Text"
+},
+{
+"id": "padding-top",
+"type": "text",
+"label": "Padding top(px)"
+},
+{
+"id": "padding-bottom",
+"type": "text",
+"label": "Padding bottom(px)"
+}
+]
+}
+]
+}
+{% endschema %}
+
+
+<style>
+  @media screen and (max-width: 767px){
+    .medium-up--one-fifth.faq__text, .medium-up--four-fifths {
+      width: 100% !important;
+      padding-left: 0px !important;
+      position: unset !important;
+    }
+  }
+  .product__accordion {
+    margin-top: 0;
+}
+  .faq.grid {
+    display: block !important;
+  }
+  .text--faq.h4 {
+    cursor: pointer;
+  }
+  .medium-up--one-fifth.faq__text {
+    width: 20%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: inline-block;
+    float: left;
+    padding-top: 40px;
+  }
+  .medium-up--four-fifths {
+    width: 80%;
+    padding-left: 15px;
+    display: inline-block;
+  }
+ .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+</style>

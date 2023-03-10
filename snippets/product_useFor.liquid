@@ -1,0 +1,48 @@
+<div class="use-for page-width">
+  <div class="container leaf-con-sec">
+   <div class="tab">
+     <button class="tablinks active" onclick="openCity(event, 'London')">
+      {% render 'v-img' %}
+      <h3>{{ product.metafields.global.Suitable-heading }}</h3>
+     </button>
+     <button class="tablinks" onclick="openCity(event, 'Paris')">
+       {% render 'v-img' %}
+       <h3>{{ product.metafields.global.use-heading }}</h3>
+     </button>
+     <button class="tablinks" onclick="openCity(event, 'Tokyo')"> 
+        {% render 'v-img' %}
+        <h3>{{ product.metafields.global.safe-heading }}</h3>
+     </button>
+    </div>
+    <div id="London" class="tabcontent" style="display:block;">
+      <p>{{ product.metafields.global.suitable-para }}</p>
+    </div>
+    <div id="Paris" class="tabcontent">
+      <p>{{ product.metafields.global.use-para }}</p>
+    </div> 
+    <div id="Tokyo" class="tabcontent">
+      <p>{{ product.metafields.global.safe-para }}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+
+</script>

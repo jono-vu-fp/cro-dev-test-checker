@@ -1,0 +1,69 @@
+.sidebar_grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: "menu content";
+}
+
+.sidebar_grid .menu {
+  grid-area: menu;
+  overflow: auto;
+  width: 200px;
+  margin-right: 40px;
+}
+
+.content {
+  grid-area: content;
+}
+.sidebar_grid button.accordion, .sidebar_grid .panel {
+    width: 100%;
+}
+ul.sidebar-lists {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+.sidebar-lists a {
+  text-decoration: none;
+  color: var(--color-foreground-75);
+    }
+@media screen and (max-width: 749px){
+  .sidebar_grid {
+    display:block !important;
+    position: relative;
+  }
+  .sidebar_grid .menu {
+    width: 100%;
+    margin-bottom: 20px;
+        border: 1px solid;
+  }
+  ul.sidebar-lists {
+    display: none;
+    padding: 10px;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    left: 0;
+    top: 41px;
+    z-index: 9999999;
+    border: 1px solid;
+  }
+  .sidebar_grid .menu h3:after {
+    position: absolute;
+    content: "\276F";
+    right: 10px;
+    transform: rotate(90deg);
+    transition: 1s all;
+  }
+  .sidebar_grid .menu h3.active:after {
+    transform: rotate(-90deg);
+    transition: 1s all;
+  }
+  .sidebar_grid .menu h3 {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0;
+  }
+}

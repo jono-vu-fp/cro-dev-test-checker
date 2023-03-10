@@ -1,0 +1,155 @@
+<link rel="stylesheet" href="{{ 'section-rich-text.css' | asset_url }}" media="print" onload="this.media='all'">
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<div class="put-in philosphy roller">
+  <div class="rich-text content-container color-background-1 gradient rich-text--full-width content-container--full-width ">
+    <div class="rich-text__wrapper rich-text__wrapper--center page-width">
+      <div class="rich-text__blocks center">
+          <h2 class="rich-text__heading rte hxl">
+            <span>{{ section.settings.heading-philosophy}}</span>
+          </h2>
+          <div class="rich-text__text rte">
+            <p> <strong>{{ section.settings.subheading-philosophy}}</strong></p>
+            <p> {{ section.settings.para-philosophy}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>  
+<div class="review-slider">
+  <div class="shipping-bar put-in customers-slide" style="display:none;">
+    <h2 class="text-center">Real Reviews From Real Customers</h2>
+  </div>
+  <div class="main-widget yotpo yotpo-reviews-carousel" 
+  data-background-color="transparent" 
+  data-mode="top_rated" 
+  data-type="product" 
+  data-count="3" 
+  data-show-bottomline="1" 
+  data-autoplay-enabled="1" 
+  data-autoplay-speed="3000" 
+  data-show-navigation="1">&nbsp;
+  </div>
+<br><br>
+<div class="shipping-bar use-for leave put-in read-more">
+  <div class="container">
+    <a href="#review-section">
+      <h2>Read more reviews</h2>
+    </a>
+  </div>
+</div>
+
+<div class="shipping-bar put-in philosphy top-space">
+  <div class="container">
+    <h2 class="text-center">Customers Also Purchased</h2>
+    <div class="page-width_container">
+      {%- assign collection = collections[section.settings.collection] -%}
+     <ul id="Slider-{{ section.id }}" class="collection-slider grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %}" role="list" aria-label="{{ 'general.slider.name' | t }}">
+        {%- for product in collection.products  -%}
+          <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="grid__item slider__slide">
+            {% render 'card-product',
+            card_product: product,
+            media_aspect_ratio: "square",
+              show_rating: true,
+            section_id: section.id
+            %}
+          </li>
+        {%- endfor -%}
+        </ul>
+    </div>
+</div>
+
+<div class="container rollers">
+  <div class="image-section for-use section-lat">
+    <div class="direction">
+      <img src="{{ product.metafields.global.crack-image }}">
+      <div class="blue-bar">
+        <h2 class="text-center">{{ product.metafields.global.crack-heading }}</h2>
+        <div class="section-bar">
+          <div class="block">
+            <h3>{{ product.metafields.global.gently-title }}</h3>
+            <p>{{ product.metafields.global.gently-para }}</p>
+          </div>
+          <div class="block">
+            <h3>{{ product.metafields.global.ensure-title }}</h3>
+            <p>{{ product.metafields.global.ensure-para }}</p>
+          </div>
+          <div class="block">
+            <h3>{{ product.metafields.global.rinse-title }}</h3>
+            <p>{{ product.metafields.global.rinse-para }}</p>
+          </div>
+          <div class="block">
+            <h3>{{ product.metafields.global.follow-title }}</h3>
+            <p>{{ product.metafields.global.follow-para }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% schema %}
+{
+"name": "Review and additional",
+"settings": [
+{
+"id": "collection",
+"type": "collection",
+"label": {
+"cs": "Kolekce",
+"da": "Kollektion",
+"de": "Kategorie",
+"en": "Collection",
+"es": "Colección",
+"fi": "Kokoelma",
+"fr": "Collection",
+"it": "Collezione",
+"ja": "コレクション",
+"ko": "컬렉션",
+"nb": "Samling",
+"nl": "Collectie",
+"pl": "Kolekcja",
+"pt-BR": "Coleção",
+"pt-PT": "Coleção",
+"sv": "Produktserie",
+"th": "คอลเลกชัน",
+"tr": "Koleksiyon",
+"vi": "Bộ sưu tập",
+"zh-CN": "收藏",
+"zh-TW": "商品系列"
+}
+},
+{
+"type":"textarea",
+"id":"small_decs",
+"label":"Subheading for collection"
+},
+{
+"type":"checkbox",
+"id":"center_text",
+"label":"Center Product title and price"
+},
+{
+"id": "heading-philosophy",
+"type": "text",
+"label": "Heading"
+},
+{
+"id": "subheading-philosophy",
+"type": "text",
+"label": "Subheading"
+},
+{
+"id": "para-philosophy",
+"type": "text",
+"label": "Textarea"
+}
+],
+"presets": [
+{
+"name": "Review and additional"
+}
+]
+}
+{% endschema %}

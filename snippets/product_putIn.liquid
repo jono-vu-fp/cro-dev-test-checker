@@ -1,0 +1,134 @@
+
+<div class="shipping-bar put-in  page-width">
+  <div class="container">
+    <h1 class="center">{{ product.metafields.global.what-put-heading }}</h1>
+    <div class="block">
+      <img src="{{ product.metafields.global.put-image-1 }}">
+      <h3>{{ product.metafields.global.put-image-heading }}</h3>
+      <p>{{ product.metafields.global.put-image-para }}</p>
+    </div>
+    <div class="block">
+      <img src="{{ product.metafields.global.put-image-2 }}">
+      <h3>{{ product.metafields.global.put-image-heading-2 }}</h3>
+      <p>{{ product.metafields.global.put-image-para-2 }}</p>
+    </div>
+    <div class="block">
+      <img src="{{ product.metafields.global.put-image-3 }}">
+      <h3>{{ product.metafields.global.put-image-heading-3 }}</h3>
+      <p>{{ product.metafields.global.put-image-para-3 }}</p>
+    </div>
+    <div class="block">
+      <img src="{{ product.metafields.global.put-image-4 }}">
+      <h3>{{ product.metafields.global.put-image-heading-4 }}</h3>
+      <p>{{ product.metafields.global.put-image-para-4 }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="shipping-bar leave put-in container  page-width">
+  <div class="container Everything-btn" id="myBtn">
+    <h2>{{ product.metafields.global.everything-include-heading }}</h2>
+  </div>
+</div>
+
+<div id="myModal" class="modal  page-width">
+   <div class="modal-content">
+     <span class="close">&times;</span>
+     {{ product.metafields.global.everything-ingredients }}
+  </div>
+</div>
+
+<div class="shipping-bar leave put-in Important  page-width">
+  <div class="container">
+    <h2>{{ product.metafields.global.leave-out-heading }}</h2>
+  </div>
+</div>
+
+<div class="shipping-bar use-for keep-section icon-unique">
+  <div class="container">
+    <div class="block">
+      <img src="{{ product.metafields.global.paraben-image }}">
+      <p> {{ product.metafields.global.paraben-para }}</p>
+    </div>
+    <div class="block">
+      <img src="{{ product.metafields.global.cruelty-image }}">
+      <p> {{ product.metafields.global.cruelty-para }} </p>
+    </div>
+    <div class="block">
+      <img src="{{ product.metafields.global.vegan-image }}">
+      <p>{{ product.metafields.global.vegan-para }} </p> 
+    </div>
+    <div class="block">
+      <img src="{{ product.metafields.global.gluten-image }}">
+      <p> {{ product.metafields.global.gluten-para }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="shipping-bar leave put-in container everthing-section  page-width">
+  <div class="container Everything-btn" id="myBtn1">
+    <h2>{{ product.metafields.global.Everything-heading }}</h2>
+  </div>
+</div>
+
+<div id="myModal1" class="modal test  page-width">
+  <div class="modal-content">
+    <span class="close1">&times;</span>
+     {{ settings.para}}
+  </div>
+</div>
+
+<div class="container page-width">
+  <div class="image-section for-use">
+    <div class="direction">
+      <img src="{{ product.metafields.global.direction-image }}">
+      <div class="blue-bar">
+        <h1 class="center">{{ product.metafields.global.direction-heading }}</h1>
+        <div class="section-bar">
+          <div class="block">
+          <h3>{{ product.metafields.global.one-title }}</h3>
+          <p>{{ product.metafields.global.one-para }}</p>
+          </div>
+          <div class="block">
+          <h3>{{ product.metafields.global.two-title }}</h3>
+          <p>{{ product.metafields.global.two-para }}</p>
+          </div>
+           <div class="block">
+          <h3>{{ product.metafields.global.third-title }}</h3>
+          <p>{{ product.metafields.global.third-para }}</p>
+          </div>
+          <div class="block">
+          <h3>{{ product.metafields.global.four-title }}</h3>
+          <p>{{ product.metafields.global.four-para }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$("div#myBtn").click(function(){
+$("#myModal").show();
+});
+$("div#myModal span.close").click(function(){
+$("#myModal").hide();
+});
+
+var modal = document.getElementById("myModal1");
+var btn = document.getElementById("myBtn1");
+var span = document.getElementsByClassName("close1")[0];
+btn.onclick = function() {
+modal.style.display = "block";
+}
+
+span.onclick = function() {
+modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+</script> 

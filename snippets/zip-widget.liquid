@@ -1,0 +1,36 @@
+<!-- Zip Widget Start -->
+<span>
+<style type="text/css">
+#partPayCalculatorWidget{
+text-align: left;
+width: 100% !important;
+background: none !important;
+padding-left: 0px !important;
+margin: 0px !important;
+color: inherit !important;
+font-size: 1em !important;
+}
+#partPayCalculatorWidgetLogo{
+width: 20% !important;
+height: 20% !important;
+}
+#partPayCalculatorWidget br{
+display: none !important;
+}
+#partPayCalculatorWidgetTextFromCopy {
+padding-left: 3px !important;
+}
+#partPayCalculatorWidget::after {
+clear:both;
+}
+#partPayCalculatorWidgetLogo::after {
+clear:both;
+}
+#partPayCalculatorWidgetTextFromCopy::after {
+clear:both;
+}
+</style>
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<script async src="https://widgets.partpay.co.nz/zip-widget-classic-v3.0.0.js?amount={{ current_variant.price | divided_by: 100.0 }}&locale=nz"></script>
+</span>
+<!-- Zip Widget End -->
